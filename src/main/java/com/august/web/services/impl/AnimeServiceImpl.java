@@ -1,0 +1,40 @@
+package com.august.web.services.impl;
+
+import com.august.web.dtos.AnimeDto;
+import com.august.web.models.Anime;
+import com.august.web.repository.AnimeRepository;
+import com.august.web.services.AnimeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+@Service
+public class AnimeServiceImpl implements AnimeService {
+    private AnimeRepository animeRepository;
+    @Autowired
+    public AnimeServiceImpl(AnimeRepository animeRepository) {
+        this.animeRepository = animeRepository;
+    }
+
+    @Override
+    public List<AnimeDto> findAllAnimes() {
+        List<Anime> animes = animeRepository.findAll();
+        return animes.stream().map((anime) -> mapToAnimeDto(anime)).collect(Collectors.toList());
+    }
+    private AnimeDto mapToAnimeDto(Anime anime){
+        AnimeDto animeDto = AnimeDto.builder()
+                .id(anime.getId())
+                .title(anime.getTitle())
+                .description(anime.getDescription())
+                .imageUrl(anime.getImageUrl())
+                .createdOn(anime.getCreatedOn())
+                .updatedOn(anime.getUpdatedOn())
+                .build();
+        return animeDto;
+    }
+    public Anime saveAnime(Anime anime){
+        return animeRepository.save(anime);
+    }
+}
