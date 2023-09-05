@@ -13,4 +13,6 @@ public interface AnimeService {
     AnimeDto findAnimeById(Long id);
 
     void updateAnime(AnimeDto anime);
+
+    void delete(Long animeId);
 }

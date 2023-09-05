@@ -23,17 +23,6 @@ public class AnimeServiceImpl implements AnimeService {
         List<Anime> animes = animeRepository.findAll();
         return animes.stream().map((anime) -> mapToAnimeDto(anime)).collect(Collectors.toList());
     }
-    private AnimeDto mapToAnimeDto(Anime anime){
-        AnimeDto animeDto = AnimeDto.builder()
-                .id(anime.getId())
-                .title(anime.getTitle())
-                .description(anime.getDescription())
-                .imageUrl(anime.getImageUrl())
-                .createdOn(anime.getCreatedOn())
-                .updatedOn(anime.getUpdatedOn())
-                .build();
-        return animeDto;
-    }
     public Anime saveAnime(AnimeDto animeDto){
         Anime anime = mapToAnime(animeDto);
         return animeRepository.save(anime);
@@ -50,6 +39,12 @@ public class AnimeServiceImpl implements AnimeService {
         Anime anime = mapToAnime(animeDto);
         animeRepository.save(anime);
     }
+
+    @Override
+    public void delete(Long animeId) {
+        animeRepository.deleteById(animeId);
+    }
+
     public Anime mapToAnime(AnimeDto animeDto){
         Anime anime = Anime.builder()
                 .id(animeDto.getId())
@@ -60,6 +55,17 @@ public class AnimeServiceImpl implements AnimeService {
                 .updatedOn(animeDto.getUpdatedOn())
                 .build();
         return anime;
+    }
+    private AnimeDto mapToAnimeDto(Anime anime){
+        AnimeDto animeDto = AnimeDto.builder()
+                .id(anime.getId())
+                .title(anime.getTitle())
+                .description(anime.getDescription())
+                .imageUrl(anime.getImageUrl())
+                .createdOn(anime.getCreatedOn())
+                .updatedOn(anime.getUpdatedOn())
+                .build();
+        return animeDto;
     }
 
 }

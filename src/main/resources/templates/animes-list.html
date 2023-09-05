@@ -13,7 +13,7 @@
         <div class="anime-info" th:each="anime :${animes}">
             <img th:src="${anime.imageUrl}" alt="Anime Image" class="anime-image">
             <div>
-                <p th:text="${anime.title}" class="anime-name">Anime name 10/10</p>
+                <a th:text="${anime.title}" th:href="@{/animes/{animeId}(animeId=${anime.id})}" class="anime-name">Anime name</a>
                 <p th:text="${anime.description}" class="anime-description">
             </div>
             <a href="#" class="anime-link">Join discussion</a> <!-- Добавляем ссылку -->

@@ -55,15 +55,20 @@ public class AnimeController {
         return "anime-details";
     }
     @PostMapping("/animes/{animeId}/edit")
-    public String updateClub(@PathVariable("animeId") Long animeId,
-                             @Valid @ModelAttribute("anime") AnimeDto animeDto,
-                             BindingResult result, Model model){
+    public String updateAnime(@PathVariable("animeId") Long animeId,
+                              @Valid @ModelAttribute("anime") AnimeDto animeDto,
+                              BindingResult result, Model model){
         if (result.hasErrors()){
             model.addAttribute("anime", animeDto);
             return "animes-edit";
         }
         animeDto.setId(animeId);
         animeService.updateAnime(animeDto);
+        return "redirect:/animes";
+    }
+    @GetMapping("/animes/{animeId}/delete")
+    public String deleteAnime(@PathVariable("animeId") Long animeId){
+        animeService.delete(animeId);
         return "redirect:/animes";
     }
 }

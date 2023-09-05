@@ -52,6 +52,10 @@
 .anime-name {
     font-size: 24px;
     font-weight: bold;
+    color: black;
+}
+.anime-name:hover {
+    color: black;
 }
 
 .anime-description {
