@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Genres</title>
+</head>
+<body>
+<section layout:fragment="body">
+    <div class="left-div">
+        <h1>Genres</h1>
+        <form role="form" method="post" th:action="@{/genres/new}" th:object="${genre}">
+            <div class="form-group">
+                <label for="name" class="genre-add-label">Add a genre</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        th:field="*{name}"
+                        name="name">
+            </div>
+            <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
+            <button type="submit" class="btn btn-primary genre-add-button">Add</button>
+        </form>
+        <div class="genre-info" th:each="genre :${genres}">
+            <a th:text="${genre.name}" class="genre-name">Genre name</a> <!-- to-do вставить нормальную ссылку на список аниме отфильтрованых по жанру -->
+            <a th:href="@{/genres/{genreId}/delete(genreId=${genre.id})}" class="genre-delete">Delete</a>
+        </div>
+    </div>
+
+    <div class="right-div">
+        <div class="right-align">
+            <img src="https://via.placeholder.com/200x300" alt="Image 1" class="right-image">
+            <a href="#" class="right-link">Join us in our telegram chat</a>
+            <img src="https://via.placeholder.com/200x300" alt="Image 2" class="right-image">
+            <a href="#" class="right-link">Support our project</a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

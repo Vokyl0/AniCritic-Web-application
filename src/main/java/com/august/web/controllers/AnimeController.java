@@ -39,14 +39,13 @@ public class AnimeController {
             return "animes-create";
         }
         animeService.saveAnime(animeDto);
-        System.out.println(animeDto.getDescription() + "  " + animeDto.getTitle());
         return "redirect:/animes";
     }
     @GetMapping("/animes/{animeId}/edit")
     public String editAnimeForm(@PathVariable("animeId") Long animeId, Model model){
         AnimeDto anime = animeService.findAnimeById(animeId);
         model.addAttribute("anime",anime);
-        return "animes-edit";
+        return "anime-edit";
     }
     @GetMapping("/animes/{animeId}")
     public String animeDetails(@PathVariable("animeId") Long animeId, Model model){
@@ -60,7 +59,7 @@ public class AnimeController {
                               BindingResult result, Model model){
         if (result.hasErrors()){
             model.addAttribute("anime", animeDto);
-            return "animes-edit";
+            return "anime-edit";
         }
         animeDto.setId(animeId);
         animeService.updateAnime(animeDto);

@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -29,4 +30,11 @@ public class Anime {
 
     @UpdateTimestamp
     private LocalDateTime updatedOn;
+    @ManyToMany
+    @JoinTable(
+            name = "anime_genre",
+            joinColumns = @JoinColumn(name = "anime_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private Set<Genre> genres;
 }

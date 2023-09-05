@@ -53,6 +53,7 @@ public class AnimeServiceImpl implements AnimeService {
                 .imageUrl(animeDto.getImageUrl())
                 .createdOn(animeDto.getCreatedOn())
                 .updatedOn(animeDto.getUpdatedOn())
+                .genres(animeDto.getGenres())
                 .build();
         return anime;
     }
@@ -64,6 +65,7 @@ public class AnimeServiceImpl implements AnimeService {
                 .imageUrl(anime.getImageUrl())
                 .createdOn(anime.getCreatedOn())
                 .updatedOn(anime.getUpdatedOn())
+                .genres(anime.getGenres())
                 .build();
         return animeDto;
     }
