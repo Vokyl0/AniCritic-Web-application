@@ -1,0 +1,64 @@
+/* General styles */
+.sign-in-link {
+    margin-right: 20px;
+}
+
+.left-div {
+    width: 70%;
+    float: left;
+    padding: 20px;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 10px;
+}
+
+.right-div {
+    width: 30%;
+    float: left;
+    padding: 20px;
+    text-align: center;
+}
+
+.right-align {
+    float: right;
+}
+
+.right-image {
+    width: 200px;
+    height: 300px;
+    margin-bottom: 5px;
+}
+
+.right-link {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.anime-info {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.anime-image {
+    width: 300px;
+    height: 400px;
+    float: left;
+    margin-right: 20px;
+}
+
+.anime-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.anime-description {
+    font-size: 16px;
+    color: #666;
+}
+
+.anime-link {
+    margin-right: 20px;
+}

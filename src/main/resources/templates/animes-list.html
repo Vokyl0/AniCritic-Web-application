@@ -1,132 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>AniCritic</title>
-    <style>
-        /**/
-        .sign-in-link {
-            margin-right: 20px;
-        }
-        /* Стили для левого div */
-        .left-div {
-            width: 70%;
-            float: left;
-            padding: 20px;
-        }
-        .anime-info{
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        /* Стили для изображения */
-        .anime-image {
-            width: 300px;
-            height: 400px;
-            float: left; /* Добавляем float: left для изображения */
-            margin-right: 20px; /* Добавляем отступ справа от изображения */
-        }
-
-        /* Стили для надписи "Anime name" */
-        .anime-name {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        /* Стили для описания аниме */
-        .anime-description {
-            font-size: 16px;
-            color: #666;
-        }
-
-        .anime-link {
-            margin-right: 20px;
-        }
-
-        /* Стили для навигации */
-        .navbar-nav .nav-item {
-            margin-right: 10px; /* Добавляем отступ между элементами навигации */
-        }
-
-        /* Стили для правого div */
-        .right-div {
-            width: 30%;
-            float: left;
-            padding: 20px;
-            text-align: center;
-        }
-        .right-align {
-            float: right;
-        }
-
-        /* Стили для правого изображения */
-        .right-image {
-            width: 200px;
-            height: 300px;
-            margin-bottom: 5px;
-        }
-
-        /* Стили для правой ссылки */
-        .right-link {
-            font-size: 14px;
-            display: block; /* Добавляем display: block, чтобы ссылки шли друг под другом */
-            margin-bottom: 20px;
-        }
-    </style>
+    <title>Anime create</title>
 </head>
 <body>
-<header class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-        <div style="width: 50px; height: 50px; background-color: #ccc;"></div> <!-- to-do заменить на реальное лого -->
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/animes">Top 100</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Latest</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">My anime</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Discussions</a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="ml-auto">
-        <p class="my-2 my-lg-0 sign-in-link"><a href="#">Sign In</a></p>
-    </div>
-</header>
-
-<div class="left-div">
-    <h1>Top 100 anime</h1>
-    <div class="anime-info" th:each="anime :${animes}">
-        <img th:src="${anime.imageUrl}" alt="Anime Image" class="anime-image">
-        <div>
-            <p th:text="${anime.title}" class="anime-name">Anime name 10/10</p>
-            <p th:text="${anime.description}" class="anime-description">
+<section layout:fragment="body">
+    <div class="left-div">
+        <h1>Top 100 anime</h1>
+        <div class="anime-info" th:each="anime :${animes}">
+            <img th:src="${anime.imageUrl}" alt="Anime Image" class="anime-image">
+            <div>
+                <p th:text="${anime.title}" class="anime-name">Anime name 10/10</p>
+                <p th:text="${anime.description}" class="anime-description">
+            </div>
+            <a href="#" class="anime-link">Join discussion</a> <!-- Добавляем ссылку -->
+            <a th:href="@{/animes/{animeId}/edit(animeId=${anime.id})}" class="anime-link">Edit</a>
         </div>
-        <a href="#" class="anime-link">Join discussion</a> <!-- Добавляем ссылку -->
-        <a th:href="@{/animes/{animeId}/edit(animeId=${anime.id})}" class="anime-link">Edit</a>
     </div>
-</div>
 
-<div class="right-div">
-    <div class="right-align">
-        <img src="https://via.placeholder.com/200x300" alt="Image 1" class="right-image">
-        <a href="#" class="right-link">Join us in our telegram chat</a>
-        <img src="https://via.placeholder.com/200x300" alt="Image 2" class="right-image">
-        <a href="#" class="right-link">Support our project</a>
+    <div class="right-div">
+        <div class="right-align">
+            <img src="https://via.placeholder.com/200x300" alt="Image 1" class="right-image">
+            <a href="#" class="right-link">Join us in our telegram chat</a>
+            <img src="https://via.placeholder.com/200x300" alt="Image 2" class="right-image">
+            <a href="#" class="right-link">Support our project</a>
+        </div>
     </div>
-</div>
-
+</section>
 </body>
 </html>
