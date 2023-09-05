@@ -6,10 +6,10 @@ import com.august.web.services.AnimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -33,9 +33,37 @@ public class AnimeController {
         return "animes-create";
     }
     @PostMapping("/animes/new")
-    public String saveAnime(@ModelAttribute("anime") Anime anime){
-        animeService.saveAnime(anime);
-        System.out.println(anime.getDescription() + "  " + anime.getTitle());
+    public String saveAnime(@Valid @ModelAttribute("anime") AnimeDto animeDto, BindingResult result, Model model){
+        if (result.hasErrors()){
+            model.addAttribute("anime", animeDto);
+            return "animes-create";
+        }
+        animeService.saveAnime(animeDto);
+        System.out.println(animeDto.getDescription() + "  " + animeDto.getTitle());
+        return "redirect:/animes";
+    }
+    @GetMapping("/animes/{animeId}/edit")
+    public String editAnimeForm(@PathVariable("animeId") Long animeId, Model model){
+        AnimeDto anime = animeService.findAnimeById(animeId);
+        model.addAttribute("anime",anime);
+        return "animes-edit";
+    }
+    @GetMapping("/animes/{animeId}")
+    public String animeDetails(@PathVariable("animeId") Long animeId, Model model){
+        AnimeDto anime = animeService.findAnimeById(animeId);
+        model.addAttribute("anime", anime);
+        return "anime-details";
+    }
+    @PostMapping("/animes/{animeId}/edit")
+    public String updateClub(@PathVariable("animeId") Long animeId,
+                             @Valid @ModelAttribute("anime") AnimeDto animeDto,
+                             BindingResult result, Model model){
+        if (result.hasErrors()){
+            model.addAttribute("anime", animeDto);
+            return "animes-edit";
+        }
+        animeDto.setId(animeId);
+        animeService.updateAnime(animeDto);
         return "redirect:/animes";
     }
 }

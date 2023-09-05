@@ -8,5 +8,9 @@ import java.util.List;
 public interface AnimeService {
     List<AnimeDto> findAllAnimes();
 
-    Anime saveAnime(Anime anime);
+    Anime saveAnime(AnimeDto animeDto);
+
+    AnimeDto findAnimeById(Long id);
+
+    void updateAnime(AnimeDto anime);
 }

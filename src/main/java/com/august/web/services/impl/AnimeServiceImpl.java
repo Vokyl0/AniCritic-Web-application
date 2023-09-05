@@ -34,7 +34,32 @@ public class AnimeServiceImpl implements AnimeService {
                 .build();
         return animeDto;
     }
-    public Anime saveAnime(Anime anime){
+    public Anime saveAnime(AnimeDto animeDto){
+        Anime anime = mapToAnime(animeDto);
         return animeRepository.save(anime);
     }
+
+    @Override
+    public AnimeDto findAnimeById(Long id) {
+        Anime anime = animeRepository.findById(id).get();
+        return mapToAnimeDto(anime);
+    }
+
+    @Override
+    public void updateAnime(AnimeDto animeDto) {
+        Anime anime = mapToAnime(animeDto);
+        animeRepository.save(anime);
+    }
+    public Anime mapToAnime(AnimeDto animeDto){
+        Anime anime = Anime.builder()
+                .id(animeDto.getId())
+                .title(animeDto.getTitle())
+                .description(animeDto.getDescription())
+                .imageUrl(animeDto.getImageUrl())
+                .createdOn(animeDto.getCreatedOn())
+                .updatedOn(animeDto.getUpdatedOn())
+                .build();
+        return anime;
+    }
+
 }
