@@ -14,6 +14,10 @@
             <img th:src="${anime.imageUrl}" alt="Anime Image" class="anime-image">
             <div>
                 <a th:text="${anime.title}" th:href="@{/animes/{animeId}(animeId=${anime.id})}" class="anime-name">Anime name</a>
+                <br>
+                <div th:each="genre :${anime.genres}" class="anime-genres-div">
+                    <a th:text="${genre.name}" th:href="@{/animes/genre/{genreName}(genreName=${genre.name})}" class="anime-genres"></a>
+                </div>
                 <p th:text="${anime.description}" class="anime-description">
             </div>
             <a href="#" class="anime-link">Join discussion</a> <!-- Добавляем ссылку -->

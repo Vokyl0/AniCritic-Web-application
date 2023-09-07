@@ -4,9 +4,7 @@ import com.august.web.models.Anime;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
-import java.util.HashSet;
 import java.util.Set;
 
 @Data

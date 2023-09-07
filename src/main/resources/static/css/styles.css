@@ -66,6 +66,15 @@
 .anime-link {
     margin-right: 20px;
 }
+.anime-genres{
+    display: inline-block;
+    color: gray;
+    font-weight: bold;
+}
+.anime-genres-div{
+    display: inline-block;
+    margin-right: 10px;
+ }
 .genre-name{
     font-size: 24px;
     color: black;

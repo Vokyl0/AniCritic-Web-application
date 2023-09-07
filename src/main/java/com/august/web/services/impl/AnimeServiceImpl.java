@@ -45,6 +45,16 @@ public class AnimeServiceImpl implements AnimeService {
         animeRepository.deleteById(animeId);
     }
 
+    @Override
+    public List<AnimeDto> findAnimesByGenre(String genreName) {
+        List<Anime> animes = animeRepository.findAll();
+        return animes.stream()
+                .filter((anime -> anime.getGenres().stream()
+                .anyMatch(genre -> genre.getName().equals(genreName))))
+                .map(anime -> mapToAnimeDto(anime))
+                .collect(Collectors.toList());
+    }
+
     public Anime mapToAnime(AnimeDto animeDto){
         Anime anime = Anime.builder()
                 .id(animeDto.getId())

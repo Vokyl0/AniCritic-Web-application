@@ -15,4 +15,6 @@ public interface AnimeService {
     void updateAnime(AnimeDto anime);
 
     void delete(Long animeId);
+
+    List<AnimeDto> findAnimesByGenre(String genreName);
 }

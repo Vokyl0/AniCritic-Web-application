@@ -1,7 +1,9 @@
 package com.august.web.controllers;
 
 import com.august.web.dtos.AnimeDto;
+import com.august.web.dtos.GenreDto;
 import com.august.web.models.Anime;
+import com.august.web.models.Genre;
 import com.august.web.services.AnimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -69,5 +71,11 @@ public class AnimeController {
     public String deleteAnime(@PathVariable("animeId") Long animeId){
         animeService.delete(animeId);
         return "redirect:/animes";
+    }
+    @GetMapping("/animes/genre/{genreName}")
+    public String listAnimesByGenre(@PathVariable("genreName") String genreName, Model model){
+        List<AnimeDto> animes = animeService.findAnimesByGenre(genreName);
+        model.addAttribute("animes", animes);
+        return "animes-list";
     }
 }
