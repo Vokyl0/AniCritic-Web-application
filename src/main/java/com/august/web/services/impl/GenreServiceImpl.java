@@ -34,7 +34,9 @@ public class GenreServiceImpl implements GenreService {
     public void delete(Long genreId) {
         genreRepository.deleteById(genreId);
     }
-
+    public Genre getGenreById(Long genreId){
+        return genreRepository.findById(genreId).orElse(null);
+    }
 
     private Genre mapToGenre(GenreDto genreDto) {
         Genre genre = Genre.builder()

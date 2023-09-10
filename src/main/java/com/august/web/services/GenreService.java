@@ -14,4 +14,5 @@ public interface GenreService {
     Genre saveGenre(GenreDto genreDto);
 
     void delete(Long genreId);
+    public Genre getGenreById(Long genreId);
 }

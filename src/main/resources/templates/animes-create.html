@@ -41,6 +41,15 @@
                             th:field="*{imageUrl}"
                             name="imageUrl">
                 </div>
+                <div class="form-group">
+                    <label>Genres:</label>
+                    <div th:each="genre : ${allGenres}">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" th:id="'genre_' + ${genre.id}" th:name="selectedGenres" th:value="${genre.id}">
+                            <label class="form-check-label" th:for="'genre_' + ${genre.id}" th:text="${genre.name}"></label>
+                        </div>
+                    </div>
+                </div>
                 <p th:if="${#fields.hasErrors('imageUrl')}" class="text-danger" th:errors="*{imageUrl}"></p>
                 <button type="submit" class="btn btn-primary">Add</button>
             </form>
